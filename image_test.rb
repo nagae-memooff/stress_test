@@ -114,14 +114,12 @@ begin
 
   dataset = [ 
     {legend: "post_response_time", data: $post_response_time},
-    {legend: "get_response_time", data: $get_response_time }
   ]
   title = __FILE__[0..-4]
   make_graph title, dataset, [], "#{title}.png", {x_axis_label: "time", y_axis_label: "ms"},'Line'
 
   rate_dataset = [ 
     {legend: "post_response_time", data: $post_response_time.rate_in(RESP_RENGES)},
-    {legend: "get_response_time", data: $get_response_time.rate_in(RESP_RENGES) }
   ]
   make_graph title, rate_dataset, RESP_RENGES, "#{title}_rate.png", {x_axis_label: "ms", y_axis_label: "%"}, 'Bar'
 rescue Interrupt
@@ -139,14 +137,12 @@ rescue Interrupt
 
   dataset = [ 
     {legend: "post_response_time", data: $post_response_time},
-    {legend: "get_response_time", data: $get_response_time }
   ]
   title = __FILE__[0..-4]
   make_graph title, dataset, [], "#{title}.png", {x_axis_label: "time", y_axis_label: "ms"},'Line'
 
   rate_dataset = [ 
     {legend: "post_response_time", data: $post_response_time.rate_in(RESP_RENGES)},
-    {legend: "get_response_time", data: $get_response_time.rate_in(RESP_RENGES) }
   ]
   make_graph title, rate_dataset, RESP_RENGES, "#{title}_rate.png", {x_axis_label: "ms", y_axis_label: "%"}, 'Bar'
 end
