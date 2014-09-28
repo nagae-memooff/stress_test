@@ -88,7 +88,7 @@ class Array
     # 对每个区间求落在该区间的比率，并将比率加入data数组
     ranges.each do |range|
       times = self.times_in_range range
-      rate = ((times / size.to_f ) * 10000).to_i / 100 
+      rate = (((times / size.to_f ) * 10000) / 100 ).to_i
       datas << rate
     end
 
