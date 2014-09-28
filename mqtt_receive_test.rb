@@ -14,7 +14,7 @@ include AnalyzeHelper
 
 
 online_users_at_same_time = 60
-receive_limit = 10000
+# receive_limit = 10000
 $login_retry_times = 0
 $received_msgs = 0
 $start_at = nil
@@ -78,13 +78,13 @@ rescue Interrupt
     STDERR.print "收到的消息总数：#{$received_msgs}\n"
     STDERR.print "开始于：#{$start_at}\n"
     STDERR.print "结束于：#{$end_at}\n"
-    STDERR.print "推送速度：#{$received_msgs / ($end_at - $start_at)}条/秒\n"
+#     STDERR.print "推送速度：#{$received_msgs / ($end_at - $start_at)}条/秒\n"
     # 检查重复相关逻辑
-    if msg_bodys.uniq.size == $received_msgs
-      STDERR.print "收到的消息没有重复\n"
-    else
-      STDERR.print "收到的消息出现#{$received_msgs - msg_bodys.uniq.size}条重复\n"
-    end
+#     if msg_bodys.uniq.size == $received_msgs
+#       STDERR.print "收到的消息没有重复\n"
+#     else
+#       STDERR.print "收到的消息出现#{$received_msgs - msg_bodys.uniq.size}条重复\n"
+#     end
   
     # 计算平均响应时间
     times.rate_graph MQTT_RECEIVE_RANGES, "message delay times(s)", {x_axis_label: "ms", y_axis_label: "%"}, "mqtt_receive.png", 'Bar'

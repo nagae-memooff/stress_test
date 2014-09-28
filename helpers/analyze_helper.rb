@@ -32,9 +32,9 @@ module AnalyzeHelper
     # Gruff::Bezier.new
     # Gruff::StackedBar.new
 
-    g.title_font_size = 60
-    g.legend_font_size = 32
-    g.marker_font_size = 12
+    g.title_font_size = 32
+    g.legend_font_size = 24
+    g.marker_font_size = 16
     
     # 新建一个data数组用于保存API响应时间落在每个区间的比率
     g.title = title
