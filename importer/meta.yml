@@ -1,0 +1,28 @@
+#init user and department config
+# The value of the parameter is position in the sheet
+department:
+  dept_code: 1
+  parent_dept_code: 2
+  display_order: 3
+  short_name: 4
+  full_name: 5
+user:
+  email: 1
+  name: 2
+  title: 3
+  cellvoice1: 4
+  cellvoice2: 5
+  workvoice: 6
+  emp_code: 7
+  dept_code: 8
+  display_order: 9
+  ext1:
+  ext2:
+  ext3:
+  ext4:
+  ext5:
+  ext6:
+  ext7:
+  ext8:
+  ext9:
+  ext10:
