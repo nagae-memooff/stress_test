@@ -15,11 +15,11 @@ include BusinessHelper
 include AnalyzeHelper
 
 
-online_users_at_same_time = 10
+online_users_at_same_time = 50
 $login_retry_times = 0
 $received_msgs = 0
 offset = 1
-send_times = 5
+send_times = 1000
 DELAY = 23 # 216的时间比本机慢37秒
 # DELAY = 23 # 217
 # test = Time.now.to_s[11..-7]
