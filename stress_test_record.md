@@ -80,25 +80,39 @@
 其中两张图片为一组。第一张图表对绝对数量绘图，横坐标为次数，纵坐标为毫秒;第二张图片为落在某个区间内的比率，横坐标为图中所示的左闭右开区间，纵坐标为占总数的百分比。其中，出于精确度的原因，在计算区间时，占比小于百分之一的数据会被舍弃掉。
 
 ###私信聊天测试
-![](private_message_test1.png)
-![](private_message_test_rate1.png)
-
-![](private_message_test2.png)
-![](private_message_test_rate2.png)
-
+![](private_message_test.png)
+![](private_message_test_rate.png)
 
 ###群聊测试
-![](group_message_test1.png)
-![](group_message_test_rate1.png)
-![](group_message_test2.png)
-![](group_message_test_rate2.png)
+![](group_message_test.png)
+![](group_message_test_rate.png)
 
 ###不断新建群聊测试
 ![](new_group_message_test.png)
 ![](new_group_message_test_rate.png)
 
 ##图片文件上传测试
-图片上传测试使用40个线程（用户），其中每个用户不断地从预设的四张图片（小、中、大、巨大）随机选取一张，发送到服务器，统计API响应时间。
+图片上传测试使用50个线程（用户），其中每个用户不断地从预设的图片中随机选取一张，发送到服务器，统计API响应时间。
+考虑到用户发送图片的实际情景可能为表情、截图、照片等，我们选取一定量、不同质量的jpg格式小、中、大、巨大图片做模拟测试。
+其文件大小和分辨率大小如下：
+
+|图片编号|分辨率|文件大小|
+|--------|------|--------|
+|1|180X180|60KB|
+|2|180X180|60KB|
+|3|180X180|60KB|
+|4|180X180|60KB|
+|5|180X180|60KB|
+|6|180X180|60KB|
+|7|250x250|25.5KB|
+|8|230x230|18.5KB|
+|9|1600x1200|456KB|
+|10|1600x1200|454KB|
+|11|1024x768|126KB|
+|12|320x320|32.8KB|
+|13|1440x1040|151KB|
+
+
 
 ![](image_test.png)
 ![](image_test_rate.png)
@@ -107,11 +121,9 @@
 这里统计从发送文本消息，至客户端实际收到这条消息时，二者的延时。
 由于服务器端时间和网络的细小差距，这个时间精确到毫秒时误差较大，因此这里只精确到秒，采用舍尾法。
 横坐标为响应时间的左闭右开区间（秒），纵坐标为落在该区间内的百分比。
+可见在预计的高压力下，70%的聊天消息可以在1秒以内接收到，20%的消息可以在一秒到两秒以内接收到。
 
-![](mqtt_receive1.png)
-![](mqtt_receive2.png)
-![](mqtt_receive3.png)
-![](mqtt_receive4.png)
+![](mqtt_receive.png)
 
 ##查询工作圈消息
 这里统计在满载压力时，另一客户端使用五个用户，登陆后不间断反复查看工作圈的延时。
