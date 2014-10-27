@@ -19,7 +19,7 @@ user_region = (1..100)
 $login_retry_times = 0
 offset = 1
 send_times = 5
-pages = (301..350)
+pages = (1..50)
 
 admin_user = User.new(login_name: "100", password: "111111").login
 $header = admin_user.header

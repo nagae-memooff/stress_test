@@ -15,7 +15,7 @@ include BusinessHelper
 include AnalyzeHelper
 
 
-online_users_at_same_time = 50
+online_users_at_same_time = 100
 $login_retry_times = 0
 $received_msgs = 0
 offset = 10

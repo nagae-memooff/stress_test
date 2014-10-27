@@ -14,7 +14,7 @@ include BusinessHelper
 
 
 user_region = (100...130)
-meirenzhibiao = 1000
+meirenzhibiao = 100
 
 # # 全网管理员创建新社区
 # super_admin = User.new(SUPER_ADMIN).login

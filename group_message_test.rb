@@ -15,7 +15,7 @@ include BusinessHelper
 include AnalyzeHelper
 
 
-online_users_at_same_time = 50
+online_users_at_same_time = 100
 $login_retry_times = 0
 $received_msgs = 0
 offset = 10
@@ -24,7 +24,7 @@ DELAY = 0 # 216的时间比本机慢37秒
 # DELAY = 23 # 217
 # test = Time.now.to_s[11..-7]
 login_sleep_seconds_base = ( online_users_at_same_time / 30 ).to_i + 2
-send_sleep_seconds_base = 2
+send_sleep_seconds_base = 0
 receivers = (3..20).to_a
 
 begin
