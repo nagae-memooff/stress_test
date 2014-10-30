@@ -7,7 +7,7 @@ module AnalyzeHelper
     (3  ... 5),
     (5  ... 9),
     (9  ... 15),
-    (15 ... 99)
+    (15 ... 999)
   ]
 
   RESP_RENGES = [
@@ -20,7 +20,7 @@ module AnalyzeHelper
     (350  ... 400),
     (400  ... 600),
     (600  ... 1000),
-    (1000  ... 9999)
+    (1000 ... 99999)
   ]
   def get_rate_array array, ranges
   end
