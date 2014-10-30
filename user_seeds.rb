@@ -15,10 +15,9 @@ include BusinessHelper
 
 user_region = (100...110)
 meirenzhibiao = 20
-EE_NETWORK = {name: "ee.com", display_name: "ee"}
 # 全网管理员创建新社区
 super_admin = User.new(SUPER_ADMIN).login
-response =  post "/api/v1/networks", EE_NETWORK, super_admin.header
+response =  post "/api/v1/networks", NETWORK_1, super_admin.header
 
 log "response: #{response}", 5
 sleep 5

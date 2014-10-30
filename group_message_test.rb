@@ -27,11 +27,12 @@ login_sleep_seconds_base = ( online_users_at_same_time / 30 ).to_i + 2
 send_sleep_seconds_base = 2
 receivers = (25..35).to_a
 conv_ids = []
+ADMIN = {login_name: "admin@ee.com", password: "111111"}
 
 begin
   #指定同时在线的人数，每个人都随机向其他用户发送敏信指定次数
 
-  admin_user = User.new(login_name: "100", password: "111111").login
+  admin_user = User.new(ADMIN).login
   users_response = get "/api/v1/users", {limit: online_users_at_same_time + offset}, admin_user.header
 #   log users_response, 5
   users_info = ( users_response[:items].map {|item| {id: item[:id], emp_code: item[:emp_code]}} )[offset..-1] # .map do |user|
@@ -43,7 +44,7 @@ begin
 
   users_info.each do |user_info|
     thread = Thread.new do
-      users << User.loop_login({login_name: user_info[:emp_code], password: 111111}, login_sleep_seconds_base * rand )
+      users << User.loop_login({login_name: user_info[:login_name], password: 111111}, login_sleep_seconds_base * rand )
     end
     threads << thread
   end
