@@ -13,18 +13,19 @@ include SpecHelper
 include BusinessHelper
 
 
-user_region = (100...130)
-meirenzhibiao = 100
+user_region = (100...110)
+meirenzhibiao = 20
+EE_NETWORK = {name: "ee.com", display_name: "ee"}
+# 全网管理员创建新社区
+super_admin = User.new(SUPER_ADMIN).login
+response =  post "/api/v1/networks", EE_NETWORK, super_admin.header
 
-# # 全网管理员创建新社区
-# super_admin = User.new(SUPER_ADMIN).login
-# response =  post "/api/v1/networks", NETWORK_1, super_admin.header
-# 
-# log "response: #{response}", 5
-# sleep 5
+log "response: #{response}", 5
+sleep 5
+
 
 # 社区管理员登陆
-user = User.new(login_name: "100", password: "111111").login
+user = User.new(login_name: "admin@ee.com", password: "111111").login
 $dept_admin = user
 $network_id = get("/api/v1/networks/current.json", {}, user.header)[:items].first[:id]
 # group_id = 22

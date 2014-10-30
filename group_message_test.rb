@@ -15,7 +15,7 @@ include BusinessHelper
 include AnalyzeHelper
 
 
-online_users_at_same_time = 100
+online_users_at_same_time = 40
 $login_retry_times = 0
 $received_msgs = 0
 offset = 10
@@ -25,7 +25,8 @@ DELAY = 0 # 216的时间比本机慢37秒
 # test = Time.now.to_s[11..-7]
 login_sleep_seconds_base = ( online_users_at_same_time / 30 ).to_i + 2
 send_sleep_seconds_base = 2
-receivers = (3..20).to_a
+receivers = (25..35).to_a
+conv_ids = []
 
 begin
   #指定同时在线的人数，每个人都随机向其他用户发送敏信指定次数
@@ -58,20 +59,21 @@ begin
       # 第一次直接用用户id发送
       user2_id = []
       receivers.get_rand.times {|time| user2_id << users.get_rand.id }
+      (user2_id - [user.id]).uniq!
       msg_text = "#{user.id}, #{Time.now.to_i + DELAY}"
       response = user.direct_send_minxin user2_id, msg_text
 #       log response, 5
       log response, 5 if ( response.nil? || response[:items].nil? )
 
       conversation_id = response[:items].first[:conversation_id]
+      conv_ids << conversation_id
+      sleep send_sleep_seconds_base * rand
 
       # 有过一次会话以后，通过会话id发送
       (send_times - 1).times do |time|
-#         msg_text = Time.now.to_i + DELAY
         msg_text = "#{2 * (time + 1) * online_users_at_same_time + user.id}, #{Time.now.to_i + DELAY }"
         r = user.send_minxin_by_conversation_id conversation_id, msg_text
         log send_resp, 5 if r[:errors]
-#         log msg_text, 5
         sleep send_sleep_seconds_base * rand
       end
 
@@ -133,6 +135,11 @@ rescue Interrupt
     {legend: "post_response_time", data: $post_response_time.rate_in(RESP_RENGES)},
   ]
   make_graph title, rate_dataset, RESP_RENGES, "#{title}_rate.png", {x_axis_label: "ms", y_axis_label: "%"}, 'Bar'
+  if conv_ids.uniq.count == conv_ids.count
+    puts "没有重复的conv_id"
+  else
+    puts "出现重复的conv_id: #{(conv_ids - conv_ids.uniq).inspect}"
+  end
 
 #   post_response_time_png = "group_msg_test_post_response_time.png"
 #   $post_response_time.graph RESP_RENGES, "post response time(ms)", {}, post_response_time_png
