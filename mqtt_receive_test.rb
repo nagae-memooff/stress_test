@@ -22,7 +22,7 @@ $end_at = nil
 offset = 2
 
 begin
-  admin_user = User.new(login_name: "100", password: "111111").login
+  admin_user = User.new(login_name: "admin@ee.com", password: "111111").login
   response = get "/api/v1/users", {limit: online_users_at_same_time + offset}, admin_user.header
 
   msg_bodys = []
@@ -33,7 +33,7 @@ begin
   threads = []
   online_users_at_same_time.times do |n|
     thread = Thread.new do
-      user1 = User.loop_login({login_name: user_ids[n][:emp_code], password: 111111}, ( online_users_at_same_time * rand / 30 ).to_i)
+      user1 = User.loop_login({login_name: user_ids[n][:login_name], password: 111111}, ( online_users_at_same_time * rand / 30 ).to_i)
       puts "用户#{user1.id}登陆完毕"
 #     user1.receive_mqtt
       begin
