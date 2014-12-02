@@ -32,7 +32,7 @@ begin
   admin_user = User.new(login_name: "100", password: "111111").login
   users_response = get "/api/v1/users", {limit: online_users_at_same_time + offset}, admin_user.header
   # log response, 0
-  users_info = ( users_response[:items].map {|item| {id: item[:id], emp_code: item[:emp_code]}} )[offset..-1] # .map do |user|
+  users_info = ( users_response[:items].map {|item| {id: item[:id], emp_code: item[:emp_code], login_name: item[:login_name]}})[offset..-1] # .map do |user|
 #     User.loop_login({login_name: user[:emp_code], password: 111111}, ( online_users_at_same_time * rand / 30 ).to_i)
 #   end
 

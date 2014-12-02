@@ -23,9 +23,9 @@ module SpecHelper
   $get_response_time = []
   $post_response_time = []
 
-  HOSTNAME = '192.168.100.218'
+  HOSTNAME = '192.168.100.238'
 #   HOSTNAME = '192.168.100.102'
-  PORT = 8018
+  PORT = 80
   MQTT_PORT = 1883
   TYPE = ''
 

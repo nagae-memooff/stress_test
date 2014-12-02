@@ -26,7 +26,7 @@ module Seeds
   RANDOM_GROUP ||= {}
 
   def get_a_random_user n
-    random_user = {login_name: "rand_#{n}@rand.com", password: "111111", email: "rand_#{n}@rand.com", name: "员工#{n}", emp_code: "#{n}", display_order: "#{n}"}
+    random_user = {login_name: "rand_user_#{n}", password: "111111", email: "rand_#{n}@rand.com", name: "员工#{n}", emp_code: "#{n}", display_order: "#{n}"}
     random_user
   end
 
